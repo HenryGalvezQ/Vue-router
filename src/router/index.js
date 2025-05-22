@@ -1,16 +1,10 @@
-import { createRouter, createMemoryHistory, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
-import BlogView from "../views/BlogView.vue";
-import EntradaBlogView from "../views/EntradaBlogView.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
-
+import { homeRoutes } from "./home";
+import { usersRoutes } from "./users";
 const routes = [
-    { path: '/', component: HomeView, name: 'home' },
-    { path: '/about', component: AboutView, name: 'about' },
-    { path: '/blog', component: BlogView, name: 'blog' },
-    { path: '/entra/id', component: EntradaBlogView, name: 'blog-entrada' },
-
+    ...homeRoutes,
+    ...usersRoutes
 ]
 
 const router = createRouter({
@@ -18,4 +12,14 @@ const router = createRouter({
     routes
 })
 
+router.beforeEach((to, from) => {
+    console.log('Ruta protegida')
+    let auth = localStorage.getItem('isAuth') === 'true'
+    if (to.meta.secure && !auth) {
+        return {
+            path: '/login',
+        }
+    }
+
+})
 export default router

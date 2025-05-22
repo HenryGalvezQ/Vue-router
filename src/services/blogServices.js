@@ -6,3 +6,7 @@ export const listaBlogs = [
     { id: 5, title: 'Rutas seguras en vue-router', content: 'Expressive, configurable and con' }
 
 ]
+
+export const getBlogItem = (id) => {
+    return listaBlogs.find(blog => blog.id == id)
+}

@@ -1,7 +1,8 @@
 <script setup>
   import {ref} from 'vue';
 
-  import { RouterView, RouterLink } from 'vue-router';
+  import { RouterView } from 'vue-router';
+  import HeaderMain from './components/HeaderMain.vue'
 
   import HomeView from './views/HomeView.vue'
   import AboutView from './views/AboutView.vue'
@@ -13,15 +14,10 @@
 
 <template>
   <div>
-    <div class="menu">
-      <RouterLink to="/"> Home </RouterLink>
-      <RouterLink :to= "{name: 'about'}"> About </RouterLink>
-      <RouterLink :to = "{name: 'blog'}"> Blog </RouterLink>
-      
-    </div>
-    <div class="content">
-      <RouterView/>
-    </div>
+    <HeaderMain/>
+      <div class="content">
+        <RouterView/>
+      </div>
 </div>
 </template>
 
@@ -34,12 +30,7 @@
   padding: 3rem;
   background-color: #b8eeff;
 }
-.menu {
-  display: flex;
-  justify-content: space-around;
-  background-color: #333;
-  padding: 1em;
-}
+
 .logo {
   height: 6em;
   padding: 1.5em;
